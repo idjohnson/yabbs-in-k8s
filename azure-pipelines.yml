@@ -13,7 +13,7 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '512d36fa-a718-44f4-a89b-8240b1f075c2'
+  dockerRegistryServiceConnection: '1d8a4ff4-7ca7-4acb-a47c-5a582a5e85c1'
   imageRepository: 'perlcicd'
   containerRegistry: 'index.docker.io'
   dockerfilePath: '**/Dockerfile'
