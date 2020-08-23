@@ -58,7 +58,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'CIVOK8S.default'
+    environment: 'CIVOK8S2.default'
     strategy:
       runOnce:
         deploy:
@@ -88,7 +88,7 @@ stages:
     pool:
       vmImage: $(vmImageName)
       
-    environment: 'CIVOK8S.$(k8sNamespaceForPR)'
+    environment: 'CIVOK8S2.$(k8sNamespaceForPR)'
     strategy:
       runOnce:
         deploy:
