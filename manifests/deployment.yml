@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: azure-managed-disk
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: managed-premium
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: perlcicd 
+spec:
+  selector:
+    matchLabels:
+      app: perlcicd
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: perlcicd 
+    spec:
+      containers:
+      - name: perlcicd 
+        image: idjf90cr.azurecr.io/perlcicd
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: "/var/www"
+          name: volume
+      volumes:
+      - name: volume
+        persistentVolumeClaim:
+          claimName: azure-managed-disk
