@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: azure-managed-disk
+  name: yabbspvc
 spec:
   accessModes:
   - ReadWriteOnce
@@ -13,20 +13,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: perlcicd 
+  name: yabbscicd 
 spec:
   selector:
     matchLabels:
-      app: perlcicd
+      app: yabbscicd
   replicas: 1
   template:
     metadata:
       labels:
-        app: perlcicd 
+        app: yabbscicd 
     spec:
       containers:
-      - name: perlcicd 
-        image: civocr.azurecr.io/perlcicd
+      - name: yabbscicd 
+        image: index.docker.io/idjohson/yabbs
         ports:
         - containerPort: 80
         volumeMounts:
@@ -35,4 +35,4 @@ spec:
       volumes:
       - name: volume
         persistentVolumeClaim:
-          claimName: azure-managed-disk
+          claimName: yabbspvc
